@@ -11,7 +11,9 @@ class SiswaController extends Controller
     function index(Request $request){
 
 		if($request->has('cari')){
-			$data_siswa=\App\Siswa::where('nama_depan','LIKE','%'.$request->cari.'%')->get();	
+			$data_siswa=\App\Siswa::where('nama_depan','LIKE','%'.$request->cari.'%')
+			->orWhere('nama_belakang','LIKE','%'.$request->cari.'%')
+			->get();	
 		}else{
 			$data_siswa=\App\Siswa::all();
 		}        

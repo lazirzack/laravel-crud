@@ -14,12 +14,12 @@
                             <form method="GET" action="/siswa">
 
                                 <div class="input-group">
-                                    <input class="form-control" name='cari' type="text"
+                                    <input class="form-control" name='cari' value="{{ request()->get('cari') }}" type="text"
                                         placeholder="Pencarian Data Siswa...">
                                     <span class="input-group-btn">
                                         <button class="btn btn-primary" type="submit">Cari</button>
                                     </span>
-                                    
+
                                 </div>
 
                             </form>
@@ -27,56 +27,62 @@
                         <div class="col-md-6">
                             <div class="right">
                                 <!-- Button trigger modal -->
-                                <a href="/siswa" class="btn btn-warning" title="Refresh data"><i class="fa fa-refresh"></i></a>
-                                <a class="btn btn-success" data-toggle="modal" data-target="#siswaModal"><i class="fa fa-plus" title="Tambah data siswa"></i></a>
+                                <a href="/siswa" class="btn btn-warning" title="Refresh data"><i
+                                        class="fa fa-refresh"></i></a>
+                                <a class="btn btn-success" data-toggle="modal" data-target="#siswaModal"><i
+                                        class="fa fa-plus" title="Tambah data siswa"></i></a>
                             </div>
                         </div>
                     </div>
+                    <br>
                     <div class="row">
                         <div class="md-12">
                             <div class="panel">
-                                @if(session('success'))
-                                <div class="alert alert-success" role="alert">
-                                    {{session('success')}}
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                @endif
                                 <div class="panel-body">
-                                    <table class="table table-hover">
-                                        <tr>
-                                            <th>NAMA DEPAN</th>
-                                            <th>NAMA BELAKANG</th>
-                                            <th>JENIS KELAMIN</th>
-                                            <th>AGAMA</th>
-                                            <th>ALAMAT</th>
-                                            <th>AKSI</th>
-                                        </tr>
-                                        @foreach ($data_siswa as $siswa)
-                                        <tr>
-                                            <td><a href="/siswa/{{$siswa->id}}/profil">{{$siswa->nama_depan}}</a></td>
-                                            <td>{{$siswa->nama_belakang}}</td>
-                                            <td>{{$siswa->jenis_kelamin}}</td>
-                                            <td>{{$siswa->agama}}</td>
-                                            <td>{{$siswa->alamat}}</td>
-                                            <td>
-                                                <a class="btn btn-primary btn-sm"
-                                                    href='{{ url("siswa/{$siswa->id}/edit") }}'>Edit</a>
-                                                <a class="btn btn-danger btn-sm"
-                                                    href='{{ url("siswa/{$siswa->id}/delete") }}'
-                                                    onclick="return confirm('Hapus data?')">Delete</a>
+                                    @if(session('success'))
+                                    <div class="alert alert-success" role="alert">
+                                        {{session('success')}}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    @endif
+                                    <div class="panel-body">
+                                        <table class="table table-hover">
+                                            <tr>
+                                                <th>NAMA DEPAN</th>
+                                                <th>NAMA BELAKANG</th>
+                                                <th style="text-align: center">JENIS KELAMIN</th>
+                                                <th>AGAMA</th>
+                                                <th>ALAMAT</th>
+                                                <th style="text-align: center">AKSI</th>
+                                            </tr>
+                                            @foreach ($data_siswa as $siswa)
+                                            <tr>
+                                                <td><a href="/siswa/{{$siswa->id}}/profil">{{$siswa->nama_depan}}</a>
+                                                </td>
+                                                <td>{{$siswa->nama_belakang}}</td>
+                                                <td align="center">{{$siswa->jenis_kelamin}}</td>
+                                                <td>{{$siswa->agama}}</td>
+                                                <td>{{$siswa->alamat}}</td>
+                                                <td align="center">
+                                                    <a class="btn btn-primary btn-sm"
+                                                        href='{{ url("siswa/{$siswa->id}/edit") }}'>Edit</a>
+                                                    <a class="btn btn-danger btn-sm"
+                                                        href='{{ url("siswa/{$siswa->id}/delete") }}'
+                                                        onclick="return confirm('Hapus data?')">Delete</a>
 
-                                                {{-- <form action='{{ url("siswa/{$siswa->id}") }}' method="post"
-                                                onsubmit="confirm('Hapus data?')">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                                </form> --}}
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </table>
+                                                    {{-- <form action='{{ url("siswa/{$siswa->id}") }}' method="post"
+                                                    onsubmit="confirm('Hapus data?')">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                                    </form> --}}
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
