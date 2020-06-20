@@ -109,6 +109,11 @@
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
                             name="alamat"></textarea>
                     </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Email</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            placeholder="Email" name="email">
+                    </div>
                     {{-- <div class="form-group">
                       <label for="exampleInputPassword1">Password</label>
                       <input type="password" class="form-control" id="exampleInputPassword1">

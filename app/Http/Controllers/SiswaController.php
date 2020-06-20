@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Siswa;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class SiswaController extends Controller
@@ -19,25 +20,44 @@ class SiswaController extends Controller
     }
 
     public function create(Request $request)
-    {
+    {	
+
+		//insert ke tabel user
+		$user= new \App\User;
+		$user->role='siswa';
+		$user->name=$request->nama_depan;
+		$user->email=$request->email;
+		$user->password=bcrypt('12345678');
+		$user->remember_token=Str::random(60);
+		$user->save();
+
 		$request->validate([
 			'nama_depan'=>'required|max:255',
 			'nama_belakang'=>'required|max:255',
 			'jenis_kelamin'=>'required',
 			'alamat'=>'required',
-			'agama'=>'required'
-			//'email'=>'required|max:255|email:rfc,dns',
+			'agama'=>'required',
+			'email'=>'required|max:255|email:rfc,dns',
 			// 'notelp'=>'required|max:15'
 		]);
-	
+
+		//insert ke tabel siswa
 		$mydata=new Siswa([
 			'nama_depan'=>$request->input('nama_depan'),
 			'nama_belakang'=>$request->input('nama_belakang'),
 			'jenis_kelamin'=>$request->input('jenis_kelamin'),
 			'alamat'=>$request->input('alamat'),
-			'agama'=>$request->input('agama')
+			'agama'=>$request->input('agama'),
+			'email'=>$request->input('email'),
+			'user_id'=>$user->id
 		]);
-        $mydata->save();
+		$mydata->save();
+		
+
+
+		
+
+
 		return redirect('/siswa')->with('success','Data berhasil disimpan');
 	}
 

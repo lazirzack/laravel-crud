@@ -21,8 +21,8 @@ Route::get('/login', 'AuthController@login')->name('login');
 Route::post('/postlogin', 'AuthController@postlogin');
 Route::get('/logout', 'AuthController@logout');
 
-Route::group(['middleware' => 'auth'], function () {
-    Route::get('/dashboard', 'DashboardController@index');//->middleware('auth')
+Route::group(['middleware' => ['auth','checkRole:admin']], function () {
+    
 
     Route::get('/siswa', 'SiswaController@index');
     Route::post('/siswa/create', 'SiswaController@create');
@@ -32,4 +32,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/siswa/{id}', 'SiswaController@destroy');//action untuk menghapus data dengan berdasarkan id
     Route::get('/siswa/{id}/profil', 'SiswaController@profil');//action untuk profil data dengan berdasarkan id
 });
+Route::group(['middleware' => ['auth','checkRole:admin,siswa']], function () {
+    Route::get('/dashboard', 'DashboardController@index');//->middleware('auth')
+});
+
 
