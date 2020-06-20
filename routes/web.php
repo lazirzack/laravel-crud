@@ -22,8 +22,6 @@ Route::post('/postlogin', 'AuthController@postlogin');
 Route::get('/logout', 'AuthController@logout');
 
 Route::group(['middleware' => ['auth','checkRole:admin']], function () {
-    
-
     Route::get('/siswa', 'SiswaController@index');
     Route::post('/siswa/create', 'SiswaController@create');
     Route::get('/siswa/{id}/edit', 'SiswaController@edit');//url untuk ke form edit data dengan find by id

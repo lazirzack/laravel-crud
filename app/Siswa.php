@@ -17,4 +17,5 @@ class Siswa extends Model
 
         return asset('images/'.$this->avatar);
     }
+    
 }

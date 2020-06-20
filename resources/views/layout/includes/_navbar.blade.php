@@ -49,8 +49,8 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img
-                            src="{{asset('admin/assets/img/user.png')}}" class="img-circle" alt="Avatar">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="{{asset('admin/assets/img/user.png')}}" class="img-circle" alt="Avatar">
                         <span>
                             {{Str::ucfirst(auth()->user()->name)}}
                         </span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
