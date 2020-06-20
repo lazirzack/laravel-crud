@@ -4,7 +4,6 @@
             <ul class="nav">
                
                 <li><a href="{{url('/dashboard')}}" class="{{Request::is('dashboard')||Request::is('dashboard/*')?'active':''}}"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
-                {{-- {{request->is('siswa*')? 'active' : ' '}} --}}
                 <li><a href="{{url('/siswa')}}" class="{{Request::is('siswa')||Request::is('siswa/*')?'active':''}}"><i class="lnr lnr-user"></i> <span>Siswa</span></a></li>
                 {{-- <li><a href="charts.html" class=""><i class="lnr lnr-chart-bars"></i> <span>Charts</span></a></li>
                 <li><a href="panels.html" class=""><i class="lnr lnr-cog"></i> <span>Panels</span></a></li>
