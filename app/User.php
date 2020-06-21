@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use stdClass;
 
 class User extends Authenticatable
 {
@@ -39,16 +40,32 @@ class User extends Authenticatable
 
     public function getSiswaData()
     {
-        $siswadata = Siswa::where('user_id',auth()->user()->id)->get();
-        return $siswadata;
+        $user_id=auth()->user()->id;
+        $siswadata = Siswa::where('user_id',$user_id)->get();
+        if ($siswadata->count()>0) {
+            return $siswadata[0];
+        }
+        $arr=new stdClass();
+        $arr->id=0; 
+        $arr->user_id=$user_id; 
+        $arr->nama_depan='';
+        $arr->nama_belakang='';
+        $arr->jenis_kelamin='';
+        $arr->agama='';
+        $arr->alamat='';
+        $arr->avatar='';
+        $arr->created_at='';
+        $arr->updated_at='';
+
+        return $arr;
     }
     
     public function getUserAvatar()
     {   
-        // dd($this->getSiswaData());
+        //  dd($this->getSiswaData());
 
-        if($this->getSiswaData()->count()>0){
-            $avatar = $this->getSiswaData()[0]->avatar;
+        if($this->getSiswaData()->id>0){
+            $avatar = $this->getSiswaData()->avatar;
             // dd($avatar);
             if(!$avatar){
                 return asset('images/default.jpg');

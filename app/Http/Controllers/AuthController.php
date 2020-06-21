@@ -17,13 +17,12 @@ class AuthController extends Controller
     public function postlogin(Request $request)
     {
         
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only('name', 'password');
         if(Auth::attempt($credentials)){
-            //dd($request->all());
             return redirect('/dashboard');
         }
         
-        return redirect('/login')->with('error','Email atau password salah');
+        return redirect('/login')->with('error','Username atau password salah');
 
     }
 
@@ -34,7 +33,7 @@ class AuthController extends Controller
 
         $user = new \App\User();
         $user->email = $email;
-        $user->username = $username;
+        $user->name = $username;
         $user->password = $password;
 
         $user->save();

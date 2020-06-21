@@ -47,7 +47,7 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="signin-email" class="control-label sr-only">Email</label>
-                                    <input type="email" name="email" autofocus="true" class="form-control"
+                                    <input type="text" name="name" autofocus="true" class="form-control"
                                         id="signin-email" placeholder="Email">
                                 </div>
                                 <div class="form-group">

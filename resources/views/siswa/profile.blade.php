@@ -39,6 +39,7 @@
                                     <li>Jenis Kelamin <span>{{$siswa->jenis_kelamin=='L'?'Laki-laki':'Perempuan'}}</span></li>
                                     <li>Agama <span>{{$siswa->agama}}</span></li>
                                     <li>Alamat <span>{{$siswa->alamat}}</span></li>
+                                    <li>Email <span>{{$siswa->email}}</span></li>
                                     {{-- <li>Website <span><a href="https://www.themeineed.com">www.themeineed.com</a></span></li> --}}
                                 </ul>
                             </div>
@@ -55,7 +56,9 @@
                                 <h4 class="heading">About</h4>
                                 <p>Interactively fashion excellent information after distinctive outsourcing.</p>
                             </div>
-                            <div class="text-center"><a href="/siswa/{{$siswa->id}}/edit" class="btn btn-primary">Edit Profile</a></div>
+                            @if (auth()->user()->role=='admin')
+                                <div class="text-center"><a href="/siswa/{{$siswa->id}}/edit" class="btn btn-primary">Edit Profile</a></div>
+                            @endif
                         </div>
                         <!-- END PROFILE DETAIL -->
                     </div>

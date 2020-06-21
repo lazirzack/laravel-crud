@@ -28,9 +28,10 @@ Route::group(['middleware' => ['auth','checkRole:admin']], function () {
     Route::get('/siswa/{id}/delete', 'SiswaController@delete');//url untuk hapus data dengan find by id
     Route::patch('/siswa/{id}', 'SiswaController@update');//action untuk simpan data baru dengan berdasarkan id
     Route::delete('/siswa/{id}', 'SiswaController@destroy');//action untuk menghapus data dengan berdasarkan id
-    Route::get('/siswa/{id}/profil', 'SiswaController@profil');//action untuk profil data dengan berdasarkan id
 });
+
 Route::group(['middleware' => ['auth','checkRole:admin,siswa']], function () {
+    Route::get('/siswa/{id}/profil', 'SiswaController@profil');//action untuk profil data dengan berdasarkan id
     Route::get('/dashboard', 'DashboardController@index');//->middleware('auth')
 });
 

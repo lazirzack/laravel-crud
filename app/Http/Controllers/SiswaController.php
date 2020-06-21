@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use stdClass;
 use App\Siswa;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -118,8 +119,12 @@ class SiswaController extends Controller
 	public function profil($id)
 	{
 		$siswa = \App\Siswa::find($id);
+		$user = \App\User::find($siswa->user_id);
+		$siswa->email='-';
+		if(isset($user->email)){
+			$siswa->email=$user->email;
+		}
 		return view('siswa.profile',['siswa' => $siswa]);
 	}
-
 
 }
