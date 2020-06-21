@@ -22,7 +22,8 @@ class AuthController extends Controller
             //dd($request->all());
             return redirect('/dashboard');
         }
-            return redirect('/login');       
+        
+        return redirect('/login')->with('error','Email atau password salah');
 
     }
 
