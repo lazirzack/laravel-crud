@@ -36,4 +36,27 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getSiswaData()
+    {
+        $siswadata = Siswa::where('user_id',auth()->user()->id)->get();
+        return $siswadata;
+    }
+    
+    public function getUserAvatar()
+    {   
+        // dd($this->getSiswaData());
+
+        if($this->getSiswaData()->count()>0){
+            $avatar = $this->getSiswaData()[0]->avatar;
+            // dd($avatar);
+            if(!$avatar){
+                return asset('images/default.jpg');
+            }
+            return asset('images/'.$avatar);
+        }
+        return asset('images/default.jpg');
+    }
+
+
 }

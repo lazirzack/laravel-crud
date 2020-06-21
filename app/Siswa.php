@@ -17,5 +17,9 @@ class Siswa extends Model
 
         return asset('images/'.$this->avatar);
     }
-    
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

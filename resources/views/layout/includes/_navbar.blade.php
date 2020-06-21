@@ -47,11 +47,12 @@
                         <li><a href="#">Security</a></li>
                         <li><a href="#">Troubleshooting</a></li>
                     </ul>
-                </li>
+                </li> 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="{{asset('admin/assets/img/user.png')}}" class="img-circle" alt="Avatar">
-                        <span>
+                        <img src="{{auth()->user()->getUserAvatar()}}" class="img-circle" alt="Avatar">
+                       <span>
+                            {{-- {{auth()->user()->getUserAvatar()}} --}}
                             {{Str::ucfirst(auth()->user()->name)}}
                         </span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
                     <ul class="dropdown-menu">
