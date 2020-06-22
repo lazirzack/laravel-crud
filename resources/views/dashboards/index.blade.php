@@ -6,17 +6,17 @@
         <div class="container-fluid">
             <div class="panel panel-headline">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Weekly Overview</h3>
-                    <p class="panel-subtitle">Period: Oct 14, 2016 - Oct 21, 2016</p>
+                    <h3 class="panel-title">Dashboard Data Siswa</h3>
+                    <p class="panel-subtitle">TA 2020/2021</p>
                 </div>
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-3">
                             <div class="metric">
-                                <span class="icon"><i class="fa fa-download"></i></span>
+                                <span class="icon"><i class="fa fa-user"></i></span>
                                 <p>
-                                    <span class="number">1,252</span>
-                                    <span class="title">Downloads</span>
+                                    <span class="number">{{$siswa->count()}}</span>
+                                    <span class="title">Siswa</span>
                                 </p>
                             </div>
                         </div>
@@ -24,17 +24,17 @@
                             <div class="metric">
                                 <span class="icon"><i class="fa fa-shopping-bag"></i></span>
                                 <p>
-                                    <span class="number">203</span>
-                                    <span class="title">Sales</span>
+                                    <span class="number">{{$mapel->count()}}</span>
+                                    <span class="title">Mapel</span>
                                 </p>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="metric">
-                                <span class="icon"><i class="fa fa-eye"></i></span>
+                                <span class="icon"><i class="fa fa-users"></i></span>
                                 <p>
-                                    <span class="number">274,678</span>
-                                    <span class="title">Visits</span>
+                                    <span class="number">{{$user->count()}}</span>
+                                    <span class="title">Akun User</span>
                                 </p>
                             </div>
                         </div>
@@ -42,8 +42,8 @@
                             <div class="metric">
                                 <span class="icon"><i class="fa fa-bar-chart"></i></span>
                                 <p>
-                                    <span class="number">35%</span>
-                                    <span class="title">Conversions</span>
+                                    <span class="number">{{$nilai->count()}}</span>
+                                    <span class="title">Nilai</span>
                                 </p>
                             </div>
                         </div>

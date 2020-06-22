@@ -22,4 +22,9 @@ class Siswa extends Model
     {
         return $this->belongsTo(User::class);
     } */
+
+    public function mapel()
+    {
+        return $this->belongsToMany(Mapel::class)->withPivot(['nilai']);
+    }
 }
