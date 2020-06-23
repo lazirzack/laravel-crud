@@ -106,7 +106,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="/siswa/create" method="POST">
+                <form action="/siswa/create" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="exampleInputEmail1">Nama Depan</label>
@@ -125,7 +125,7 @@
                             <option value="P">Perempuan</option>
                         </select> --}}
                         <label class="fancy-radio">
-                            <input name="jenis_kelamin" value="L" type="radio">
+                            <input name="jenis_kelamin" value="L" type="radio" checked>
                             <span><i></i>Laki-laki</span>
                         </label>
                         <label class="fancy-radio">
@@ -147,6 +147,10 @@
                         <label for="exampleFormControlTextarea1">Email</label>
                         <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                             placeholder="Email" name="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Avatar</label>
+                        <input type="file" name="avatar" class="form-control">
                     </div>
                     {{-- <div class="form-group">
                       <label for="exampleInputPassword1">Password</label>

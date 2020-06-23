@@ -54,13 +54,14 @@ class SiswaController extends Controller
 			'email'=>$request->input('email'),
 			'user_id'=>$user->id
 		]);
+		if($request->hasFile('avatar')){
+			$request->file('avatar')->move('images/',$request->file('avatar')->getClientOriginalName());
+			$mydata->avatar=$request->file('avatar')->getClientOriginalName();
+			
+		} 
+		
 		$mydata->save();
 		
-
-
-		
-
-
 		return redirect('/siswa')->with('success','Data berhasil disimpan');
 	}
 
