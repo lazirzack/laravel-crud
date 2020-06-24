@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMapelsTable extends Migration
+class AddSoftdeletes extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateMapelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('mapel', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('kode');
-            $table->string('nama');
-            $table->string('semester');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->softDeletes();
         });
     }
 
@@ -29,6 +25,8 @@ class CreateMapelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mapel');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 }

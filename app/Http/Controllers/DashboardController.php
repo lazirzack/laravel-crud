@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -15,5 +16,8 @@ class DashboardController extends Controller
 
         return view('dashboards.index',$data);
     }
-    
+    public function trashUser()
+	{
+		return User::onlyTrashed()->get();
+	}
 }

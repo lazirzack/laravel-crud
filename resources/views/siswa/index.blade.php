@@ -14,8 +14,8 @@
                             <form method="GET" action="/siswa">
 
                                 <div class="input-group">
-                                    <input class="form-control" name='cari' value="{{ request()->get('cari') }}" type="text"
-                                        placeholder="Pencarian Data Siswa...">
+                                    <input class="form-control" name='cari' value="{{ request()->get('cari') }}"
+                                        type="text" placeholder="Pencarian Data Siswa...">
                                     <span class="input-group-btn">
                                         <button class="btn btn-primary" type="submit">Cari</button>
                                     </span>
@@ -68,9 +68,15 @@
                                                 <td align="center">
                                                     <a class="btn btn-primary btn-sm"
                                                         href='{{ url("siswa/{$siswa->id}/edit") }}'>Edit</a>
-                                                    <a class="btn btn-danger btn-sm"
+                                                    {{-- <a class="btn btn-danger btn-sm"
                                                         href='{{ url("siswa/{$siswa->id}/delete") }}'
-                                                        onclick="return confirm('Hapus data?')">Delete</a>
+                                                    onclick="return confirm('Hapus data?')">Delete</a> --}}
+
+                                                    <a href="#" data-url='{{ url("siswa/{$siswa->id}/delete") }}'
+                                                        type="button" id="hapus" class="btn btn-danger btn-sm"
+                                                        data-toggle="modal" data-target="#deleteConfirm">
+                                                        Delete
+                                                    </a>
 
                                                     {{-- <form action='{{ url("siswa/{$siswa->id}") }}' method="post"
                                                     onsubmit="confirm('Hapus data?')">
@@ -94,8 +100,18 @@
     </div>
 </div>
 
+<script>
+    $(document).ready(function () {
+        $(document).on('click', '#hapus', function () {
+            let url = $(this).data('url');
+            $('#form').attr('action',url);
+        });
+    });
+
+</script>
 
 <!-- Modal -->
+{{-- modal form data --}}
 <div class="modal fade" id="siswaModal" tabindex="-1" role="dialog" aria-labelledby="siswaModalLabel"
     aria-hidden="true">
     <div class="modal-dialog">
@@ -167,6 +183,31 @@
                 <button type="submit" class="btn btn-primary">Simpan</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- modal delete data --}}
+<div class="modal fade" id="deleteConfirm" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+    aria-labelledby="deleteConfirmLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteConfirmLabel">Konfirmasi hapus data</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Hapus Data ?
+            </div>
+            <div class="modal-footer">
+                <form action="" method="post" id="form">
+                    @csrf
+                    @method('GET')
+                    <button type="submit" class="btn btn-primary btn-sm">Ya</button>
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Tidak</button>
                 </form>
             </div>
         </div>

@@ -19,7 +19,14 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
     <!-- ICONS -->
     <link rel="apple-touch-icon" sizes="76x76" href="{{asset('admin/assets/img/apple-icon.png')}}">
-    <link rel="icon" type="image/png" sizes="96x96" href="{{asset('admin/assets/img/favicon.ico')}}">
+	<link rel="icon" type="image/png" sizes="96x96" href="{{asset('admin/assets/img/favicon.ico')}}">
+	<!-- Javascript -->
+    <script src="{{asset('admin/assets/vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{asset('admin/assets/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('admin/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
+    {{-- <script src="{{asset('admin/assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js')}}"></script>
+    <script src="{{asset('admin/assets/vendor/chartist/js/chartist.min.js')}}"></script> --}}
+    <script src="{{asset('admin/assets/scripts/klorofil-common.js')}}"></script>
 </head>
 
 <body>
@@ -44,13 +51,7 @@
         </footer>
     </div>
     <!-- END WRAPPER -->
-    <!-- Javascript -->
-    <script src="{{asset('admin/assets/vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('admin/assets/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('admin/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
-    {{-- <script src="{{asset('admin/assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js')}}"></script>
-    <script src="{{asset('admin/assets/vendor/chartist/js/chartist.min.js')}}"></script> --}}
-    <script src="{{asset('admin/assets/scripts/klorofil-common.js')}}"></script>
+    
     <script>
         /* $(function() {
 		var data, options;

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use stdClass;
+use App\User;
 use App\Siswa;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -114,8 +114,15 @@ class SiswaController extends Controller
 	
 	public function delete($id)
     {
-       $mydata= Siswa::find($id);
-	   $mydata->delete();
+	   	$mydata= Siswa::find($id);
+		$user_id=$mydata->user_id;
+		if ($user_id>0) {
+			$users=User::destroy($user_id);
+			if ($users) {
+				Siswa::destroy($id);
+			}
+		}
+	//    $mydata->delete();
 	   return redirect('/siswa')->with('success','Data berhasil di-hapus');
 	}
 	
@@ -161,5 +168,10 @@ class SiswaController extends Controller
 		//Fetch list of results
 
 		$result = $queryUser->paginate(20);
+	}
+
+	public function trashSiswa()
+	{
+		return Siswa::onlyTrashed()->get();
 	}
 }
