@@ -82,6 +82,7 @@
                                             </tr>
                                             @endforeach
                                         </table>
+                                        {{ $data_siswa->links() }}
                                     </div>
                                 </div>
                             </div>

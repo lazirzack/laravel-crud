@@ -14,9 +14,11 @@ class SiswaController extends Controller
 		if($request->has('cari')){
 			$data_siswa=\App\Siswa::where('nama_depan','LIKE','%'.$request->cari.'%')
 			->orWhere('nama_belakang','LIKE','%'.$request->cari.'%')
-			->get();	
-		}else{
-			$data_siswa=\App\Siswa::all();
+			->orderBy('nama_depan','asc')
+			->paginate(5);
+			$data_siswa->appends(['cari' => $request->cari]);
+		}else{ 
+			$data_siswa=\App\Siswa::orderBy('nama_depan','asc')->paginate(5);
 		}        
 
         return view('siswa.index',['data_siswa'=>$data_siswa]);
@@ -128,4 +130,36 @@ class SiswaController extends Controller
 		return view('siswa.profile',['siswa' => $siswa]);
 	}
 
+	public function getDataFilter(Request $request)
+	{
+		//Start with creating your object, which will be used to query the database
+		$filters=$request;
+		$queryUser = Siswa::query();
+
+		//Add sorting
+
+		$queryUser->orderBy('nama_depan','asc');
+
+		//Add Conditions
+
+		if(!is_null($filters['type'])) {
+			$queryUser->where('type','=',$filters['type']);
+		}
+
+		if(!is_null($filters['state_id'])) {
+			$queryUser->whereHas('profile',function($q) use ($filters){
+				return $q->where('state_id','=',$filters['state_id']);
+			});
+		}
+
+		if(!is_null($filters['city_id'])) {
+			$queryUser->whereHas('profile',function($q) use ($filters){
+				return $q->where('city_id','=',$filters['city_id']);
+			});
+		}
+
+		//Fetch list of results
+
+		$result = $queryUser->paginate(20);
+	}
 }
